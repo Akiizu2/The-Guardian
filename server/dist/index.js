@@ -8,7 +8,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const app = (0, _express.default)();
 const port = 3000;
-app.use('/articles', _routes.articleRoutes);
+app.use('/article', _routes.articleRoutes);
 app.listen(port, () => {
   console.log(`Started with port ${port}`);
 });

@@ -14,5 +14,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const articleRouter = _express.default.Router();
 
 articleRouter.get('/', _middleware.articleMiddleware.getArticle);
+articleRouter.get('/:id([a-zA-Z\-\\0-9]+)', _middleware.articleMiddleware.getContentByArticleID);
 var _default = articleRouter;
 exports.default = _default;

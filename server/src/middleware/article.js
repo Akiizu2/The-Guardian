@@ -1,4 +1,4 @@
-import { getArticles } from '../services/article'
+import { getArticles, getContent } from '../services/article'
 import { article } from '../model'
 
 async function getArticle(req, res) {
@@ -30,6 +30,26 @@ async function getArticle(req, res) {
   }
 }
 
+async function getContentByArticleID(req, res) {
+  const { id } = req.params
+  try {
+    const content = await getContent(id)
+    res
+      .status(200)
+      .send({
+        data: content,
+      })
+  } catch (error) {
+    res
+      .status(error.code)
+      .send({
+        code: error.code,
+        message: error.statusText
+      })
+  }
+}
+
 export default {
-  getArticle
+  getArticle,
+  getContentByArticleID,
 }

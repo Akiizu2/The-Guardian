@@ -43,7 +43,26 @@ async function getArticle(req, res) {
   }
 }
 
+async function getContentByArticleID(req, res) {
+  const {
+    id
+  } = req.params;
+
+  try {
+    const content = await (0, _article.getContent)(id);
+    res.status(200).send({
+      data: content
+    });
+  } catch (error) {
+    res.status(error.code).send({
+      code: error.code,
+      message: error.statusText
+    });
+  }
+}
+
 var _default = {
-  getArticle
+  getArticle,
+  getContentByArticleID
 };
 exports.default = _default;

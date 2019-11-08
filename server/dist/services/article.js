@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getContent = getContent;
 exports.getArticles = getArticles;
 
 var _axios = _interopRequireDefault(require("axios"));
@@ -16,6 +17,28 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 const API_KEY = '120597d7-d6f4-4926-87ac-af558fc9d4f8';
+
+async function getContent(id) {
+  try {
+    const response = await (0, _axios.default)({
+      url: `https://content.guardianapis.com/${id}`,
+      method: 'GET',
+      params: {
+        'api-key': API_KEY,
+        'show-fields': 'body'
+      }
+    });
+    const {
+      content
+    } = response.data.response;
+    return _objectSpread({}, content);
+  } catch (error) {
+    throw {
+      code: 400,
+      statusText: error.response.statusText
+    };
+  }
+}
 
 async function getArticles(params) {
   try {
