@@ -1,8 +1,12 @@
-// Test
 import express from 'express'
 
-const app = express()
+import { articleRoutes } from './routes'
 
-app.listen(3000, () => {
-  console.log('Started with 3000')
+const app = express()
+const port = 3000
+
+app.use('/articles', articleRoutes)
+
+app.listen(port, () => {
+  console.log(`Started with port ${port}`)
 })

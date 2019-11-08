@@ -2,10 +2,13 @@
 
 var _express = _interopRequireDefault(require("express"));
 
+var _routes = require("./routes");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Test
 const app = (0, _express.default)();
-app.listen(3000, () => {
-  console.log('Started with 3000');
+const port = 3000;
+app.use('/articles', _routes.articleRoutes);
+app.listen(port, () => {
+  console.log(`Started with port ${port}`);
 });
