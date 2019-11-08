@@ -51,7 +51,8 @@ async function getContentByArticleID(req, res) {
   try {
     const content = await (0, _article.getContent)(id);
     res.status(200).send({
-      data: content
+      data: content,
+      code: 200
     });
   } catch (error) {
     res.status(error.code).send({

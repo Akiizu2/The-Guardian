@@ -38,6 +38,7 @@ async function getContentByArticleID(req, res) {
       .status(200)
       .send({
         data: content,
+        code: 200,
       })
   } catch (error) {
     res
