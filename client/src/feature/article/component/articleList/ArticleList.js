@@ -14,20 +14,20 @@ import styles from './articleList.module.scss'
 function ArticleList() {
 
   const [orderBy, setOrderType] = useState('newest')
+  const [page, setPage] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
   const [searchKeyword, setSearchKeyword] = useState('')
 
   const payload = useMemo(() => ({
     orderBy,
     keyword: searchKeyword,
-    page: 1,
-    pageSize: 10,
-  }), [orderBy, searchKeyword])
+    page,
+    pageSize,
+  }), [orderBy, searchKeyword, page, pageSize])
 
   const {
     isFetching,
     data,
-    code,
-    error,
   } = useArticleList(payload)
 
   const onKeywordChanged = useCallback((e) => {
@@ -37,9 +37,27 @@ function ArticleList() {
     }
   }, [searchKeyword])
 
-  useEffect(() => {
-    console.log('data', data)
-  }, [data])
+  const onPageChanged = useCallback((e) => {
+    let changingPage = +e.target.value
+    if (changingPage < 1) {
+      changingPage = 1
+    }
+
+    if (changingPage > data.pages) {
+      changingPage = data.pages
+    }
+
+    if (changingPage !== page) {
+      setPage(changingPage)
+    }
+  }, [page])
+
+  const onPageSizeChanged = useCallback((e) => {
+    const changePageSize = +e.target.value
+    if (changePageSize !== pageSize) {
+      setPageSize(changePageSize)
+    }
+  }, [pageSize])
 
   return (
     <div className={styles.container}>
@@ -64,16 +82,72 @@ function ArticleList() {
           onClick={() => setOrderType('oldest')}
         />
       </div>
-      <div className="list__wrapper">
-        {
-          data.items
-            ? data.items.map(item => (
-              <div>{item.id}</div>
-            ))
-            : 'Empty List'
-        }
+      <div className={styles.pagination__wrapper}>
+        <div className={styles.page_field__wrapper}>
+          <label htmlFor="page-size">Page Size</label>
+          <input type="number" value={pageSize} onChange={onPageSizeChanged} />
+        </div>
       </div>
-    </div>
+      {isFetching
+        ? <div className={styles.loading__wrapper}>Loading...</div>
+        : (
+          <>
+            <div className={styles.pagination__wrapper}>
+              <div className={styles.paginator_wrapper}>
+                {
+                  page - 50 > 0 && (
+                    <>
+                      <span
+                        className={styles.paginator__item}
+                        onClick={() => setPage(1)}>1</span>
+                      <span className={styles.paginator__item}>...</span>
+                    </>
+                  )
+                }
+                {
+                  page - 1 > 0 && (
+                    <span
+                      className={styles.paginator__item}
+                      onClick={() => setPage(page - 1)}>{page - 1}</span>
+                  )
+                }
+                <span className={`${styles.paginator__item} ${styles.current}`}>{page}</span>
+                {
+                  page < data.pages && (
+                    <span
+                      className={styles.paginator__item}
+                      onClick={() => setPage(page + 1)}>{page + 1}</span>
+                  )
+                }
+                {
+                  page < data.pages - 1 && (
+                    <>
+                      <span className={styles.paginator__item}>...</span>
+                      <span
+                        className={styles.paginator__item}
+                        onClick={() => setPage(data.pages)}>{data.pages}</span>
+                    </>
+                  )
+                }
+              </div>
+            </div>
+            <div className={styles.list__wrapper}>
+              {
+                data.items && (
+                  data.items.length < 1
+                    ? <div className={styles.not_found__wrapper}> Not found any article :-(  </div>
+                    : (
+                      data.items.map(item => (
+                        <div className={styles.article__items} key={item.id}>{item.webTitle}</div>
+                      ))
+                    )
+                )
+              }
+            </div>
+          </>
+        )
+      }
+    </div >
   )
 }
 
