@@ -20,5 +20,5 @@ cd server && npm install
 ### Running Locally
 
 ```
-cd server && node dist/index.js
+cd server && npm start
 ```
