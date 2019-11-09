@@ -3,7 +3,6 @@ import React, {
   useState,
   useCallback,
   useMemo,
-  useEffect,
 } from 'react'
 
 import { Radio } from '../../../../component'
@@ -36,21 +35,6 @@ function ArticleList() {
       setSearchKeyword(e.target.value)
     }
   }, [searchKeyword])
-
-  const onPageChanged = useCallback((e) => {
-    let changingPage = +e.target.value
-    if (changingPage < 1) {
-      changingPage = 1
-    }
-
-    if (changingPage > data.pages) {
-      changingPage = data.pages
-    }
-
-    if (changingPage !== page) {
-      setPage(changingPage)
-    }
-  }, [page])
 
   const onPageSizeChanged = useCallback((e) => {
     const changePageSize = +e.target.value
@@ -147,7 +131,7 @@ function ArticleList() {
           </>
         )
       }
-    </div >
+    </div>
   )
 }
 
