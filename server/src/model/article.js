@@ -9,4 +9,9 @@ export const getArticleRequest = yup.object().shape({
   'page-size': yup.number()
     .positive()
     .typeError('page_size must be an integer'),
+  'order-by': yup.string()
+    .oneOf(
+      ['newest', 'oldest'],
+      `order-by must be 'newest' or 'oldest'`
+    )
 })

@@ -19,7 +19,8 @@ async function getArticle(req, res) {
   const {
     search,
     page,
-    page_size
+    page_size,
+    order_by
   } = req.query;
 
   try {
@@ -29,6 +30,8 @@ async function getArticle(req, res) {
       page
     } : {}, {}, page_size ? {
       'page-size': page_size
+    } : {}, {}, order_by ? {
+      'order-by': order_by
     } : {}));
     const data = await (0, _article.getArticles)(params);
     res.status(200).send({

@@ -6,12 +6,14 @@ async function getArticle(req, res) {
     search,
     page,
     page_size,
+    order_by,
   } = req.query
   try {
     const params = await article.getArticleRequest.validate({
       ...search ? { q: encodeURIComponent(search) } : {},
       ...page ? { page } : {},
       ...page_size ? { 'page-size': page_size } : {},
+      ...order_by ? { 'order-by': order_by } : {},
     })
     const data = await getArticles(params)
     res
