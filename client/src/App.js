@@ -8,7 +8,6 @@ import { Router } from './component'
 const store = redux.configStore()
 
 function App() {
-  console.log('store', store)
   return (
     <Provider store={store}>
       <Router />

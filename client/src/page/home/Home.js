@@ -1,10 +1,14 @@
 import React, { memo } from 'react'
 
+import { ArticleList } from '../../feature/article/component'
 import stlyes from './home.module.scss'
 
 function HomePage() {
   return (
-    <div>Home Page</div>
+    <div className={stlyes.container}>
+      <h1 className={stlyes.header}>The Guardian</h1>
+      <ArticleList />
+    </div>
   )
 }
 

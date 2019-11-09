@@ -3,8 +3,14 @@ import { createEpicMiddleware } from 'redux-observable'
 
 import reducer from '../redux/reducers'
 import rootEpic from '../redux/epics'
+import { axios$ } from '../common/utils'
 
-const epicMiddleware = createEpicMiddleware()
+// Epics dependencies
+const dependencies = {
+  axios$,
+}
+
+const epicMiddleware = createEpicMiddleware({ dependencies })
 
 export const configStore = () => {
 

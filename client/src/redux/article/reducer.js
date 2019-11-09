@@ -1,13 +1,6 @@
 import { combineReducers } from 'redux'
 
-const list = (state = { foo: 'test' }, actions) => {
-  switch (actions.type) {
-    case 'test':
-      return {}
-    default:
-      return state
-  }
-}
+import { list } from './list/reducer'
 
 export default combineReducers({
   list

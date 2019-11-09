@@ -1,0 +1,13 @@
+.radio__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.5rem 1rem;
+
+  label {
+    font-size: 1.5rem;
+    color: #333;
+    padding-left: 0.5rem;
+  }
+}

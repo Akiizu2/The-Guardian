@@ -8,6 +8,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const app = (0, _express.default)();
 const port = 3002;
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  return next();
+});
 app.use('/article', _routes.articleRoutes);
 app.listen(port, () => {
   console.log(`Started with port ${port}`);
