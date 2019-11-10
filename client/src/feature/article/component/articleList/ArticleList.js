@@ -5,7 +5,7 @@ import React, {
   useMemo,
 } from 'react'
 
-import { Radio } from '../../../../component'
+import { Radio, Paginator } from '../../../../component'
 import { useArticleList } from '../../hooks/articleList'
 
 import styles from './articleList.module.scss'
@@ -77,43 +77,11 @@ function ArticleList() {
         : (
           <>
             <div className={styles.pagination__wrapper}>
-              <div className={styles.paginator_wrapper}>
-                {
-                  page - 50 > 0 && (
-                    <>
-                      <span
-                        className={styles.paginator__item}
-                        onClick={() => setPage(1)}>1</span>
-                      <span className={styles.paginator__item}>...</span>
-                    </>
-                  )
-                }
-                {
-                  page - 1 > 0 && (
-                    <span
-                      className={styles.paginator__item}
-                      onClick={() => setPage(page - 1)}>{page - 1}</span>
-                  )
-                }
-                <span className={`${styles.paginator__item} ${styles.current}`}>{page}</span>
-                {
-                  page < data.pages && (
-                    <span
-                      className={styles.paginator__item}
-                      onClick={() => setPage(page + 1)}>{page + 1}</span>
-                  )
-                }
-                {
-                  page < data.pages - 1 && (
-                    <>
-                      <span className={styles.paginator__item}>...</span>
-                      <span
-                        className={styles.paginator__item}
-                        onClick={() => setPage(data.pages)}>{data.pages}</span>
-                    </>
-                  )
-                }
-              </div>
+              <Paginator
+                page={page}
+                totalPage={data.pages}
+                onChanged={setPage}
+              />
             </div>
             <div className={styles.list__wrapper}>
               {
