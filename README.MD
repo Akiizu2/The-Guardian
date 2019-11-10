@@ -12,7 +12,7 @@ cd client && npm install
 
 ### Running Locally
 ```
-npm start
+cd client && npm start
 ```
 
 # Server Side
