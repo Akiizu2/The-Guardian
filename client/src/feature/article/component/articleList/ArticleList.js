@@ -15,15 +15,14 @@ function ArticleList() {
 
   const [orderBy, setOrderType] = useState('newest')
   const [page, setPage] = useState(1)
-  const [pageSize, setPageSize] = useState(10)
   const [searchKeyword, setSearchKeyword] = useState('')
 
   const payload = useMemo(() => ({
     orderBy,
     keyword: searchKeyword,
     page,
-    pageSize,
-  }), [orderBy, searchKeyword, page, pageSize])
+    pageSize: 100,
+  }), [orderBy, searchKeyword, page])
 
   const {
     isFetching,
@@ -36,13 +35,6 @@ function ArticleList() {
       setSearchKeyword(e.target.value)
     }
   }, [searchKeyword])
-
-  const onPageSizeChanged = useCallback((e) => {
-    const changePageSize = +e.target.value
-    if (changePageSize !== pageSize) {
-      setPageSize(changePageSize)
-    }
-  }, [pageSize])
 
   return (
     <div className={styles.container}>
@@ -66,12 +58,6 @@ function ArticleList() {
           checked={orderBy === 'oldest'}
           onClick={() => setOrderType('oldest')}
         />
-      </div>
-      <div className={styles.pagination__wrapper}>
-        <div className={styles.page_field__wrapper}>
-          <label htmlFor="page-size">Page Size</label>
-          <input type="number" value={pageSize} onChange={onPageSizeChanged} />
-        </div>
       </div>
       {isFetching
         ? <div className={styles.loading__wrapper}>Loading...</div>

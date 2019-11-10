@@ -22,7 +22,7 @@ const getArticleEpics = (action$, _, { axios$ }) => action$.pipe(
       url: endpoint,
       method: 'get',
       params: {
-        search: keyword,
+        ...keyword ? { search: keyword } : {},
         page,
         page_size: pageSize,
         order_by: orderBy,
