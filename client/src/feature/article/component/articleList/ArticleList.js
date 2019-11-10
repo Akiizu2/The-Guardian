@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useMemo,
 } from 'react'
+import { Link } from 'react-router-dom'
 
 import { Radio, Paginator } from '../../../../component'
 import { useArticleList } from '../../hooks/articleList'
@@ -90,7 +91,13 @@ function ArticleList() {
                     ? <div className={styles.not_found__wrapper}> Not found any article :-(  </div>
                     : (
                       data.items.map(item => (
-                        <div className={styles.article__items} key={item.id}>{item.webTitle}</div>
+                        <Link
+                          to={`/detail/${item.id}`}
+                          className={styles.article__items}
+                          key={item.id}
+                        >
+                          {item.webTitle}
+                        </Link>
                       ))
                     )
                 )

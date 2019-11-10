@@ -14,7 +14,13 @@ function Router() {
       <Switch>
         {
           routes.map(route => (
-            <Route key={route.path} path={route.path}>{route.component}</Route>
+            <Route
+              key={route.path}
+              path={route.path}
+              exact={route.exact}
+            >
+              {route.component()}
+            </Route>
           ))
         }
       </Switch>
