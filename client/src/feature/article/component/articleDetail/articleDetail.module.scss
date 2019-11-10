@@ -1,0 +1,53 @@
+.article_detail__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid #eee;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+.something__went_wrong {
+  align-self: center;
+  font-size: 2rem;
+  color: #999;
+  margin-top: 2rem;
+}
+
+.article_detail__header {
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.article_detail__published {
+  font-size: 1rem;
+  color: #999;
+}
+
+.article_detail__resource {
+  padding-top: 0.25rem;
+  color: #999;
+}
+
+.article_detail__content {
+  color: #333;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  @media screen and (max-width: 768px) {
+    padding-left: 0px;
+    .block-elements,
+    iframe,
+    figure,
+    blockquote,
+    img {
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+  }
+}

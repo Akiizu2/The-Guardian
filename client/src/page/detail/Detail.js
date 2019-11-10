@@ -10,7 +10,10 @@ function DetailPage() {
 
   return (
     <div className={styles.container}>
-      <Link to="/" className={styles.logo}>The Guardian</Link>
+      <div className={styles.menu_wrapper}>
+        <Link to="/" className={styles.back_button}>Back to home</Link>
+        <div className={styles.logo}>The Guardian</div>
+      </div>
       <ArticleDetail id={id} />
     </div>
   )

@@ -1,0 +1,28 @@
+.article_loading__wrapper {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.article_loading__item {
+  background: #eee;
+  width: 100%;
+  height: 24px;
+  animation: fadeInOut 2s infinite;
+  margin-top: 8px;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
