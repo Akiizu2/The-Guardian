@@ -1,5 +1,19 @@
 # Client Side
 
+## Description
+- Article list website
+
+## How to run server.
+
+### Installing
+```
+cd client && npm install
+```
+
+### Running Locally
+```
+npm start
+```
 
 # Server Side
 

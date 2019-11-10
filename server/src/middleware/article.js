@@ -16,6 +16,7 @@ async function getArticle(req, res) {
       ...order_by ? { 'order-by': order_by } : {},
     })
     const data = await getArticles(params)
+
     res
       .status(200)
       .send({
@@ -23,6 +24,7 @@ async function getArticle(req, res) {
         code: 200,
       })
   } catch (error) {
+
     res
       .status(400)
       .send({
