@@ -11,7 +11,10 @@ function ArticleDetail(props) {
   const { data, code, error, isFetching } = useArticleDetail(id)
 
   useEffect(() => {
-    document.title = `The Guardian: ${data.webTitle}`
+    document.title = `The Guardian: ${data.webTitle || 'Loading...'}`
+    return () => {
+      document.title = 'The Guardian'
+    }
   }, [data])
 
 
