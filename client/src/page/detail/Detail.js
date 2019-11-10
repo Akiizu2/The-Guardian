@@ -1,8 +1,7 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
 import { ArticleDetail } from '../../feature/article/component'
-
 import styles from './detail.module.scss'
 
 function DetailPage() {
