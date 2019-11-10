@@ -1,15 +1,18 @@
 import React, { memo, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+
+import { ArticleDetail } from '../../feature/article/component'
+
+import styles from './detail.module.scss'
 
 function DetailPage() {
-  const params = useParams()
-
-  useEffect(() => {
-    console.log('params', params)
-  }, [params])
+  const { id } = useParams()
 
   return (
-    <div>DetailPage</div>
+    <div className={styles.container}>
+      <Link to="/" className={styles.logo}>The Guardian</Link>
+      <ArticleDetail id={id} />
+    </div>
   )
 }
 
