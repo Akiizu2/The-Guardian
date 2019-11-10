@@ -31,6 +31,11 @@ cd client && npm start
 cd server && npm install
 ```
 
+### Compiling
+```
+cd server && yarn build
+```
+
 ### Running Locally
 
 ```
